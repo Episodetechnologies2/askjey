@@ -1,0 +1,9 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /
+
+    # Allow Next.js Node process to handle _next/static natively, 
+    # but serve public/_next/static files directly from Apache if fallback is present
+    RewriteCond %{DOCUMENT_ROOT}/public/_next/static/$1 -f
+    RewriteRule ^_next/static/(.*)$ public/_next/static/$1 [L]
+</IfModule>

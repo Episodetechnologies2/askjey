@@ -1,0 +1,62 @@
+{
+  "educational": {
+    "title": "Educational Services",
+    "description": "Strategic consultation for founders, leaders, and creative visionaries. Let's architect your next breakthrough.",
+    "services": [
+      {
+        "id": "seminar",
+        "title": "Seminar",
+        "description": "Interactive sessions covering industry insights and thought leadership. Engage with cutting-edge concepts and real-world applications. Perfect for staying ahead of market trends and emerging opportunities.",
+        "buttonLabel": "Start Your Session",
+        "imageUrl": "https://images.pexels.com/photos/29708260/pexels-photo-29708260.jpeg?auto=compress&cs=tinysrgb&w=1200",
+        "imageAlt": "Professional seminar presentation"
+      },
+      {
+        "id": "workshops",
+        "title": "Workshops & Bootcamps",
+        "description": "Hands-on practical training to build real-world skills. Learn by doing with guided exercises and immediate feedback. Transform theoretical knowledge into actionable expertise through intensive immersive programs.",
+        "buttonLabel": "Join the Program",
+        "imageUrl": "https://images.pexels.com/photos/18999460/pexels-photo-18999460.jpeg?auto=compress&cs=tinysrgb&w=1200",
+        "imageAlt": "Workshop and bootcamp training"
+      },
+      {
+        "id": "caseStudy",
+        "title": "Case Study Breakdown",
+        "description": "Deep-dive analysis of successful strategies and implementations. Learn from real-world successes and failures across industries. Extract actionable insights to apply directly to your challenges.",
+        "buttonLabel": "Dive Deeper",
+        "imageUrl": "https://images.pexels.com/photos/8371711/pexels-photo-8371711.jpeg?auto=compress&cs=tinysrgb&w=1200",
+        "imageAlt": "Case study analysis and strategy"
+      }
+    ]
+  },
+  "corporate": {
+    "title": "Corporate Services",
+    "description": "Strategic solutions for businesses and organizations. Let's transform your brand and drive measurable results.",
+    "services": [
+      {
+        "id": "brandAudit",
+        "title": "Brand Auditing",
+        "description": "Comprehensive analysis of your brand positioning and market presence. Identify gaps, opportunities, and competitive advantages. Receive strategic recommendations for brand optimization and growth.",
+        "buttonLabel": "Audit Your Brand",
+        "imageUrl": "https://images.pexels.com/photos/7876383/pexels-photo-7876383.jpeg?auto=compress&cs=tinysrgb&w=1200",
+        "imageAlt": "Brand audit and analysis"
+      },
+      {
+        "id": "campaigns",
+        "title": "Campaigns",
+        "description": "Strategic marketing campaigns designed to drive measurable results. From concept to execution with data-driven decision making. Maximize ROI through targeted messaging and channel optimization.",
+        "buttonLabel": "Launch Campaign",
+        "imageUrl": "https://images.pexels.com/photos/15635241/pexels-photo-15635241.jpeg?auto=compress&cs=tinysrgb&w=1200",
+        "imageAlt": "Marketing campaigns and strategy"
+      },
+      {
+        "id": "consultancy",
+        "title": "Marketing Consultancy",
+        "description": "Advisory services and ongoing strategic marketing guidance. Regular consultations to align marketing with business objectives. Access expert insights and best practices for sustained growth.",
+        "buttonLabel": "Get Strategic Advice",
+        "imageUrl": "https://images.pexels.com/photos/8815844/pexels-photo-8815844.jpeg?auto=compress&cs=tinysrgb&w=1200",
+        "imageAlt": "Marketing consultancy and advisory"
+      }
+    ]
+  }
+}

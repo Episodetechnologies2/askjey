@@ -1,0 +1,41 @@
+[
+  {
+    "title": "A Day in the Life of a Cadet",
+    "subtitle": "Coffee Table Journey",
+    "year": "2015",
+    "excerpt": "A visual chronicle capturing discipline, design, and storytelling at the Indian Naval Academy.",
+    "fullDescription": "This coffee table book offers an intimate look into the life of naval cadets, showcasing their journey through rigorous training, dedication, and transformation. Through stunning photography and compelling narratives, it captures the essence of discipline, leadership, and the spirit of service that defines India's naval officers.",
+    "tags": ["Photography", "Naval History"],
+    "coAuthors": ["Jey Anand", "Naval Academy Contributors"],
+    "releasedBy": "Indian Naval Academy Press",
+    "pages": "240",
+    "language": "English",
+    "image": "/assets/book/A Day in the Life of a Cadet.png"
+  },
+  {
+    "title": "Maritime Heritage of India",
+    "subtitle": "Co-authored Anthology",
+    "year": "2017",
+    "excerpt": "Unveiled by the Prime Minister of India, celebrating centuries of maritime ingenuity.",
+    "fullDescription": "An authoritative anthology exploring India's rich maritime legacy, from ancient seafaring traditions to modern naval achievements. This collaborative work brings together historians, researchers, and maritime experts.",
+    "tags": ["History", "Research"],
+    "coAuthors": ["Jey Anand", "Dr. Maritime Scholars Collective"],
+    "releasedBy": "Prime Minister of India",
+    "pages": "380",
+    "language": "English",
+    "image": "/assets/book/maritime heritage of india.png"
+  },
+  {
+    "title": "Evolution of INA",
+    "subtitle": "Modern Naval Education",
+    "year": "2019",
+    "excerpt": "Chronicling the academy's transformation through design thinking and narrative craft.",
+    "fullDescription": "A comprehensive documentation of the Indian Naval Academy's transformation into a world-class institution. This book examines the evolution of naval education, training methodologies, and the integration of modern design thinking.",
+    "tags": ["Education", "Design"],
+    "coAuthors": ["Jey Anand", "INA Faculty Team"],
+    "releasedBy": "Indian Naval Academy",
+    "pages": "320",
+    "language": "English",
+    "image": "/assets/book/Evolution of INA.png"
+  }
+]

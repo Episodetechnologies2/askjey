@@ -1,0 +1,32 @@
+[
+  {
+    "title": "Designer",
+    "type": "Full-time",
+    "location": "Remote",
+    "department": "Design"
+  },
+  {
+    "title": "Mern Developers",
+    "type": "Full-time",
+    "location": "Remote",
+    "department": "Development"
+  },
+  {
+    "title": "Digital Marketer",
+    "type": "Full-time",
+    "location": "Remote",
+    "department": "Marketing"
+  },
+  {
+    "title": "Executive Assistant",
+    "type": "Full-time",
+    "location": "Coimbatore",
+    "department": "Administration"
+  },
+  {
+    "title": "Social Media Handler",
+    "type": "Full-time",
+    "location": "Remote",
+    "department": "Marketing"
+  }
+]

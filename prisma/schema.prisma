@@ -1,0 +1,160 @@
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id         Int           @id @default(autoincrement())
+  name       String
+  username   String        @unique
+  password   String
+  avatarUrl  String?       @map("avatar_url")
+  createdAt  DateTime      @default(now()) @map("created_at")
+  updatedAt  DateTime      @default(now()) @updatedAt @map("updated_at")
+  activities ActivityLog[]
+
+  @@map("admins")
+}
+
+model Category {
+  id         Int      @id @default(autoincrement())
+  name       String
+  slug       String   @default("")
+  moduleType String   @default("work") @map("module_type")
+  createdAt  DateTime @default(now()) @map("created_at")
+  updatedAt  DateTime @default(now()) @updatedAt @map("updated_at")
+  works      Work[]
+
+  @@unique([name, moduleType])
+  @@unique([slug, moduleType])
+  @@map("categories")
+}
+
+model Work {
+  id               Int         @id @default(autoincrement())
+  slug             String      @unique
+  title            String
+  category         String      // Keeps string field for absolute compatibility
+  categoryId       Int?        @map("category_id")
+  categoryRelation Category?   @relation(fields: [categoryId], references: [id], onDelete: SetNull)
+  year             String      @default("2026")
+  client           String
+  role             String
+  location         String
+  duration         String?
+  industry         String?
+  shortDescription String      @map("short_description") @db.Text
+  longDescription  String      @map("long_description") @db.Text
+  services         Json?       @db.Json // JSON array
+  technologies     Json?       @db.Json // JSON array
+  results          Json?       @db.Json // JSON array
+  tags             Json?       @db.Json // JSON array
+  featuredImage    String      @map("featured_image")
+  heroImage        String?     @map("hero_image")
+  status           String      @default("draft") // 'published' or 'draft'
+  isTopWork        Boolean     @default(false) @map("is_top_work")
+  displayOrder     Int         @default(0) @map("display_order")
+  story            Json?       @db.Json // JSON array
+  seoTitle         String?     @map("seo_title")
+  seoDescription   String?     @map("seo_description") @db.Text
+  createdAt        DateTime    @default(now()) @map("created_at")
+  updatedAt        DateTime    @default(now()) @updatedAt @map("updated_at")
+  gallery          WorkMedia[]
+
+  @@map("works")
+}
+
+model WorkMedia {
+  id           Int      @id @default(autoincrement())
+  workId       Int      @map("work_id")
+  work         Work     @relation(fields: [workId], references: [id], onDelete: Cascade)
+  url          String   @map("image_url") // Keep physical column as image_url for compatibility
+  type         String   @default("image") // "image" or "video"
+  displayOrder Int      @default(0) @map("display_order")
+  createdAt    DateTime @default(now()) @map("created_at")
+
+  @@map("work_gallery")
+}
+
+model Update {
+  id               Int             @id @default(autoincrement())
+  slug             String          @unique
+  title            String
+  category         String          @default("General")
+  shortDescription String          @map("short_description") @db.Text
+  description      Json            // JSON array of paragraphs or markdown
+  thumbnail        String
+  banner           String?
+  author           String          @default("Jey Anand")
+  tags             Json?           @db.Json
+  keyTakeaways     Json?           @map("key_takeaways") @db.Json
+  status           String          @default("draft") // 'published' or 'draft'
+  publishedDate    String          @map("published_date")
+  seoTitle         String?         @map("seo_title")
+  seoDescription   String?         @map("seo_description") @db.Text
+  createdAt        DateTime        @default(now()) @map("created_at")
+  updatedAt        DateTime        @default(now()) @updatedAt @map("updated_at")
+  gallery          UpdateGallery[]
+
+  @@map("updates")
+}
+
+model UpdateGallery {
+  id           Int      @id @default(autoincrement())
+  updateId     Int      @map("update_id")
+  update       Update   @relation(fields: [updateId], references: [id], onDelete: Cascade)
+  imageUrl     String   @map("image_url")
+  displayOrder Int      @default(0) @map("display_order")
+  createdAt    DateTime @default(now()) @map("created_at")
+
+  @@map("update_gallery")
+}
+
+model Service {
+  id        Int     @id @default(autoincrement())
+  name      String
+  priceInr  String  @map("price_inr")
+  priceUsd  String  @map("price_usd")
+  notes     String? @db.Text
+
+  @@map("services")
+}
+
+model Settings {
+  id        Int      @id @default(autoincrement())
+  keyName   String   @unique @map("key_name")
+  value     String?  @db.LongText
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @default(now()) @updatedAt @map("updated_at")
+
+  @@map("settings")
+}
+
+model Media {
+  id           Int      @id @default(autoincrement())
+  filename     String
+  originalName String   @map("original_name")
+  mimeType     String   @map("mime_type")
+  size         Int
+  url          String
+  folder       String   @default("/")
+  createdAt    DateTime @default(now()) @map("created_at")
+
+  @@map("media")
+}
+
+model ActivityLog {
+  id        Int      @id @default(autoincrement())
+  adminId   Int?     @map("admin_id")
+  admin     User?    @relation(fields: [adminId], references: [id], onDelete: SetNull)
+  action    String
+  details   String?  @db.Text
+  ipAddress String?  @map("ip_address")
+  createdAt DateTime @default(now()) @map("created_at")
+
+  @@map("activity_logs")
+}

@@ -1,0 +1,12 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /
+
+    # 1. Directly serve _next/static files from .next/static folder if file exists
+    RewriteCond %{DOCUMENT_ROOT}/.next/static/$1 -f
+    RewriteRule ^_next/static/(.*)$ .next/static/$1 [L]
+
+    # 2. Fallback: serve _next/static files from public/_next/static folder if present
+    RewriteCond %{DOCUMENT_ROOT}/public/_next/static/$1 -f
+    RewriteRule ^_next/static/(.*)$ public/_next/static/$1 [L]
+</IfModule>
