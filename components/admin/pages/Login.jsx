@@ -18,20 +18,7 @@ export default function Login() {
   const onSubmit = async (data) => {
     setLoading(true);
     try {
-      // 1. Establish NextAuth session cookie for middleware protection
-      const nextAuthResult = await signIn('credentials', {
-        username: data.username,
-        password: data.password,
-        redirect: false
-      });
-
-      if (nextAuthResult?.error) {
-        toast.error(nextAuthResult.error);
-        setLoading(false);
-        return;
-      }
-
-      // 2. Fetch JWT token and admin details for localStorage compatibility
+      // 1. Direct API Login endpoint (fetches JWT token & sets authentication cookies)
       const response = await api.post('/login', {
         username: data.username,
         password: data.password
@@ -40,7 +27,18 @@ export default function Login() {
       const { token, admin } = response.data;
       localStorage.setItem('adminToken', token);
       localStorage.setItem('adminUser', JSON.stringify(admin));
-      
+
+      // 2. Also trigger NextAuth session in background (ignore 401 proxy warnings)
+      try {
+        await signIn('credentials', {
+          username: data.username,
+          password: data.password,
+          redirect: false
+        });
+      } catch (e) {
+        console.warn('NextAuth signin notice:', e);
+      }
+
       toast.success('Successfully logged in!');
       router.push('/admin/dashboard');
     } catch (error) {
