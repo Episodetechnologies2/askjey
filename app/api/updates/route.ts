@@ -8,7 +8,7 @@ export async function GET(request: Request) {
   const search = url.searchParams.get("search");
   const status = url.searchParams.get("status");
   const page = parseInt(url.searchParams.get("page") || "1");
-  const limit = parseInt(url.searchParams.get("limit") || "50");
+  const limit = parseInt(url.searchParams.get("limit") || "1000");
   const offset = (page - 1) * limit;
 
   // Authentication check

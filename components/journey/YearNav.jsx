@@ -3,30 +3,24 @@
  *
  * Desktop: two-column sidebar (left side of the grid).
  * Mobile:  horizontal sticky pill bar (above the cards).
- *
- * Props:
- *   milestones      – array of milestone objects
- *   activeIndex     – currently highlighted milestone index
- *   onYearClick(i)  – called when a year button is clicked
- *   yearButtonRefs  – ref array so the parent can auto-scroll the mobile bar
- *   desktopOnly     – if true, only renders the two-column desktop sidebar
- *                     (mobile pill bar is handled by the parent)
  */
-const YearNav = ({ milestones, activeIndex, onYearClick, yearButtonRefs, desktopOnly = false }) => {
+const YearNav = ({ milestones = [], activeIndex, onYearClick, yearButtonRefs, desktopOnly = false }) => {
   const uniqueYears = [];
   const yearToFirstIndex = {};
+
   milestones.forEach((milestone, index) => {
-    if (!yearToFirstIndex.hasOwnProperty(milestone.year)) {
-      yearToFirstIndex[milestone.year] = index;
-      uniqueYears.push(milestone.year);
+    const yearStr = String(milestone.year);
+    if (!yearToFirstIndex.hasOwnProperty(yearStr)) {
+      yearToFirstIndex[yearStr] = index;
+      uniqueYears.push(yearStr);
     }
   });
 
-  const activeYear = milestones[activeIndex]?.year;
+  const activeYear = String(milestones[activeIndex]?.year || "");
   const half = Math.ceil(uniqueYears.length / 2);
 
   const buttonClass = (year) =>
-    `w-full text-left py-1.5 sm:py-2 px-1 sm:px-2 transition-all duration-300 group border-l-2 ${
+    `w-full text-left py-1.5 sm:py-2 px-1 sm:px-2 transition-all duration-300 group border-l-2 cursor-pointer ${
       activeYear === year
         ? "border-primary"
         : "border-transparent hover:border-white/20"
@@ -35,7 +29,7 @@ const YearNav = ({ milestones, activeIndex, onYearClick, yearButtonRefs, desktop
   const labelClass = (year) =>
     `text-xs sm:text-sm md:text-base font-display transition-all duration-300 whitespace-nowrap ${
       activeYear === year
-        ? "text-primary"
+        ? "text-primary font-bold"
         : "text-white/40 group-hover:text-white/60"
     }`;
 
@@ -57,7 +51,7 @@ const YearNav = ({ milestones, activeIndex, onYearClick, yearButtonRefs, desktop
                   onClick={() => onYearClick(firstIndex)}
                   className={`shrink-0 px-3 py-1.5 text-xs font-display transition-all duration-300 border-b-2 ${
                     isActive
-                      ? "text-primary border-primary"
+                      ? "text-primary border-primary font-bold"
                       : "text-white/60 border-transparent hover:text-white hover:border-white/30"
                   }`}
                 >

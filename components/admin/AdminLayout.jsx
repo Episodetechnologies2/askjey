@@ -10,6 +10,7 @@ import {
   LayoutDashboard,
   Briefcase,
   FileText,
+  Milestone,
   Image as ImageIcon,
   Settings as SettingsIcon,
   User,
@@ -61,6 +62,7 @@ export default function AdminLayout({ children }) {
     { name: 'Dashboard', path: '/admin/dashboard', icon: LayoutDashboard },
     { name: 'Works', path: '/admin/works', icon: Briefcase },
     { name: 'Updates', path: '/admin/updates', icon: FileText },
+    { name: 'Journey', path: '/admin/journey', icon: Milestone },
     { name: 'Settings', path: '/admin/settings', icon: SettingsIcon },
     { name: 'Profile', path: '/admin/profile', icon: User }
   ];
@@ -236,7 +238,7 @@ export default function AdminLayout({ children }) {
                 className="flex items-center gap-3 p-1.5 rounded-full border border-white/10 bg-[#171717]/60 hover:border-[#1ebcc7]/30 transition-all cursor-pointer"
               >
                 <img
-                  src={adminUser.avatarUrl || '/assest/avatar icon.png'}
+                  src={adminUser.avatarUrl || '/assets/avatar icon.png'}
                   alt={adminUser.name || 'Admin'}
                   className="w-8 h-8 rounded-full object-cover"
                 />

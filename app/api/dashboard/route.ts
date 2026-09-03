@@ -19,7 +19,14 @@ export async function GET(request: Request) {
     const publishedUpdatesCount = await prisma.update.count({ where: { status: "published" } });
     const draftUpdatesCount = await prisma.update.count({ where: { status: "draft" } });
 
-    // 3. Recent activity logs (limit 10)
+    // 3. Journey counters
+    const totalJourneyCount = await prisma.journey.count();
+    const latestJourney = await prisma.journey.findMany({
+      orderBy: { createdAt: "desc" },
+      take: 5
+    });
+
+    // 4. Recent activity logs (limit 10)
     const recentActivity = await prisma.activityLog.findMany({
       orderBy: { createdAt: "desc" },
       take: 10,
@@ -30,7 +37,6 @@ export async function GET(request: Request) {
       }
     });
 
-    // Map activity logs to match legacy response schema: l.*, a.name as admin_name
     const mappedActivity = recentActivity.map(log => ({
       id: log.id,
       admin_id: log.adminId,
@@ -41,7 +47,7 @@ export async function GET(request: Request) {
       admin_name: log.admin ? log.admin.name : null
     }));
 
-    // 4. Latest uploads (limit 5)
+    // 5. Latest uploads (limit 5)
     const latestMedia = await prisma.media.findMany({
       orderBy: { createdAt: "desc" },
       take: 5
@@ -68,6 +74,10 @@ export async function GET(request: Request) {
         total: totalUpdatesCount,
         published: publishedUpdatesCount,
         draft: draftUpdatesCount
+      },
+      journey: {
+        total: totalJourneyCount,
+        recent: latestJourney
       },
       recentActivity: mappedActivity,
       latestMedia: mappedMedia

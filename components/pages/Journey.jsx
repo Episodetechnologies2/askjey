@@ -1,13 +1,16 @@
 "use client";
 
+import dynamic from 'next/dynamic';
 import { useRouter } from 'next/navigation';
 import Header from '@/components/sections/Header';
 import Footer from '@/components/sections/Footer';
-import WorksTimeline from '@/components/sections/WorksTimeline';
 import { Briefcase, Award, Users } from "lucide-react";
-import JourneyTimeline from '@/components/sections/JourneyTimeline';
 
 import WorkSection from '@/components/WorkSection';
+
+const JourneyTimeline = dynamic(() => import('@/components/sections/JourneyTimeline'), {
+  ssr: false,
+});
 
 export default function JourneyPage() {
   const router = useRouter();
@@ -87,8 +90,6 @@ export default function JourneyPage() {
 
         {/* Timeline Section */}
         <JourneyTimeline />
-        {/* <WorksTimeline /> */}
-
 
         <div className="py-8 md:py-16 bg-black">
           <div className="container mx-auto px-6">

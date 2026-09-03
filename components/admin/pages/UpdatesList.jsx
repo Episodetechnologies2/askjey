@@ -56,7 +56,7 @@ export default function UpdatesList() {
           category,
           status,
           page,
-          limit: 10
+          limit: 1000
         }
       });
       setUpdates(response.data.updates);

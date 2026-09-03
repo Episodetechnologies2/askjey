@@ -67,7 +67,7 @@ export default function WorksList() {
           sort,
           order,
           page,
-          limit: 10
+          limit: 1000
         }
       });
       setWorks(response.data.works);

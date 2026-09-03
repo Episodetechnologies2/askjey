@@ -158,3 +158,18 @@ model ActivityLog {
 
   @@map("activity_logs")
 }
+
+model Journey {
+  id               Int      @id @default(autoincrement())
+  year             String
+  title            String
+  shortDescription String   @map("short_description") @db.Text
+  longDescription  String   @map("long_description") @db.Text
+  image            String
+  displayOrder     Int      @default(0) @map("display_order")
+  createdAt        DateTime @default(now()) @map("created_at")
+  updatedAt        DateTime @default(now()) @updatedAt @map("updated_at")
+
+  @@map("journey")
+}
+
