@@ -25,6 +25,8 @@ build/
 .vite/
 .next/
 public/_next/
+deploy.zip
+*.zip
 
 # Editor directories and files
 .vscode/*
